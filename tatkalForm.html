@@ -12,8 +12,9 @@
 			}
 
 			.container {
-				min-width: 700px;
-				margin: 10px 100px;
+				width: 60%;
+				margin: 10px 20%;
+				min-width: 400px;
 			}
 
 			h3 {
@@ -22,6 +23,10 @@
 
 			h1 {
 				color: purple;
+			}
+
+			#submitForm {
+				margin-top: 20px;
 			}
 		</style>
 		<script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
@@ -217,6 +222,8 @@
 				  </div>
 				  <div class="col-xs-6"></div>
 				</div>
+
+				<h3>Payment Details</h3>
 				<div class="row">
 					<div class="form-group col-xs-4">
 						<label for="paymentMethod">Payment Method</label>
@@ -224,9 +231,8 @@
 							<option value="debitCard">Debit Card with pin</option>
 						</select>
 					</div>
-				</div>
-				<div class="row">
 					<div class="form-group col-xs-4">
+						<label for="paymentBank">Select Bank</label>
 						<select id="paymentBank" name="paymentBank" class="form-control dropdown">
 							<option value="0">State Bank of India</option>
 							<option value="1">Canara Bank</option>
@@ -236,8 +242,28 @@
 						</select>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-xs-4">
+						<label for="cardNo">Card Number</label>
+						<input type="number" class="form-control" id="cardNo" name="cardNo" placeholder="Card Number">
+					</div>
+					<div class="col-xs-4">
+							<label for="cardName">Name on Card</label>
+							<input type="text" class="form-control" id="cardName" name="cardName" placeholder="Name on card">
+					</div>					
+				</div>
+				<div class="row">
+					<div class="col-xs-2">
+						<label for="cvv">CVV</label>
+						<input type="password" class="form-control" id="cvv" name="cvv" placeholder="CVV">
+					</div>
+					<div class="col-xs-2">
+							<label for="pin">Enter pin</label>
+							<input type="password" class="form-control" id="pin" name="pin" placeholder="Enter pin">
+					</div>
+				</div>
 			  <div class="row col-xs-6">
-					<input type="submit" id="submitForm" class="btn btn-success" value="submit">
+					<input type="submit" id="submitForm" class="btn btn-primary btn-lg" value="submit">
 			  </div>
 			</form>
 		</div>
