@@ -1,15 +1,14 @@
 var anchorTagOfLink;
 var bookNowLink;
 
+// Waits until Book Now loads
 function waitForElementToDisplay(time) {
   if($('td a#' + bookNowLink)[0]) {
-      console.log('hi1');
-      console.log(bookNowLink);
+      // console.log('check1');
       document.getElementById(bookNowLink).click();
       return;
   }
   else {
-      console.log('hi2');
       setTimeout(function() {
           waitForElementToDisplay(time);
       }, time);
@@ -18,9 +17,8 @@ function waitForElementToDisplay(time) {
 
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
-  console.log(myData);
+  // Login Details
   if ($('input[name="j_username"]')[0]) {
-    console.log('done1');
     $('input[name="j_username"]').val(myData['userName']);
     $('input[name="j_password"]').val(myData['irctcPassword']);
     $('input.loginCaptcha').focus();
@@ -28,13 +26,14 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
   }
 
   // Payment Preferences
-  else if($('#DEBIT_CARD')[0] && myData['paymentBank']) {
+  if($('#DEBIT_CARD')[0] && myData['paymentBank']) {
     var index = parseInt(myData['paymentBank']);
     $('td#DEBIT_CARD').click();
     $('input[tabindex="4"]#DEBIT_CARD')[index].click(); // SBI(0), Canara, HDFC, AXIS, UBI
-    // $('input[type="button"]#validate').click();
+    $('input[type="button"]#validate').click();
   }
   
+  // Click on class and Book Now
   else if($('input[value="TQ"]')[0]) {
     $('input[value="'+ myData['selectedQuota'] +'"]').click();
     var trainNum = new RegExp(myData['trainNo'].split(' ')[0] + '-' + myData['selectedClass']);
@@ -47,15 +46,16 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
           $('td a#' + id).parents("tr").css( "background-color", "#fca758" );
           anchorTagLink = $('td a')[i];   // for future use ( used in auto click at 10AM and 11 AM )
 
-          //GENERATE BOOK NOW LINK
+          //GENERATES BOOK NOW LINK
           bookNowLink = myData['trainNo'].split(' ')[0] + '-' + myData['selectedClass'] + '-' + myData['selectedQuota'] + '-0'
-          console.log('b1; ', bookNowLink);
           break;
         } 
     }
     waitForElementToDisplay(1);
-    // console.log('booknowlink: ' + bookNowLink);
-  } else if( $('.input-style1.psgn-name')[0] ) {
+  } 
+  
+  // Fill passenger Details form
+  else if( $('.input-style1.psgn-name')[0] ) {
     for(var i=0; i<4; i++) {
       var num = i+1;
       $('input.input-style1.psgn-name')[i].value = myData['p' + num + 'Name'];
@@ -64,11 +64,12 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
       $('.input-style1.psgn-berth-choice')[i].value = myData['p' + num +'prefBirth'];
     }
     $('input[name="addPassengerForm:mobileNo"]').val(myData['mobileNo']);
-    $('#nlpAnswer')[0].focus();
+    $('input.text.captcha-answer').focus();
+    $('#nlpAnswer').focus();
   }
   
+  // Fill in the Journey Details.
   else if ($("input[name='jpform:fromStation']")[0] && document.URL == 'https://www.irctc.co.in/eticketing/home') {
-    console.log('done2');
     $('input[name="jpform:fromStation"]').val(myData['jpform_fromStation']);
     $('input[name="jpform:toStation"]').val(myData['jpform_toStation']);
     $('input[name="jpform:journeyDateInputDate"]').val(myData['jpform:journeyDateInputDate']);
@@ -77,6 +78,5 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
     console.log('done');
   }
 });
-
 
 // javascript: document.getElementsByClassName("input-style1 psgn-name")[0].setAttribute("value","Jeevan"); document.getElementById("addPassengerForm:psdetail:0:psgnAge").setAttribute("value","19"); document.getElementById("addPassengerForm:psdetail:0:psgnGender").options[1].selected = true; document.getElementById("addPassengerForm:psdetail:0:berthChoice").options[1].selected = true; document.getElementById("addPassengerForm:autoUpgrade").click(); document.getElementById("addPassengerForm:mobileNo").setAttribute("value","9968967608"); document.getElementsByClassName("text captcha-answer")[0].focus();
