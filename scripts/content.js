@@ -4,7 +4,6 @@ var bookNowLink;
 // Waits until Book Now loads
 function waitForElementToDisplay(time) {
   if($('td a#' + bookNowLink)[0]) {
-      // console.log('check1');
       document.getElementById(bookNowLink).click();
       return;
   }
@@ -17,7 +16,6 @@ function waitForElementToDisplay(time) {
 
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
-  // decryption
 
   if( $('input[name="debitCardNumber"]') && document.URL === "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm") {
     f0=document.forms[0];
@@ -31,7 +29,6 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
 
   // Payment Preferences
   if($('#DEBIT_CARD')[0] && myData['paymentBank']) {
-    console.log('hello');
     var index = parseInt(myData['paymentBank']);
     $('td#DEBIT_CARD').click();
     $('input[tabindex="4"]#DEBIT_CARD')[index].click(); // SBI(0), Canara, HDFC, AXIS, UBI

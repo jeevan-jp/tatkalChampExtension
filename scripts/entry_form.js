@@ -2,7 +2,6 @@ var myForm = document.getElementById('myForm');
 
 function convertDate( date ) {
 	var x = date.split('-');
-	console.log(x);
 }
 
 $('#myForm').on('submit', (e)=> {
@@ -10,7 +9,6 @@ $('#myForm').on('submit', (e)=> {
     formData = new FormData(myForm);
 
 	var formObject = {};
-	console.log('form: ', formData)
 
 	for( var ent of formData.entries()) {
 		formObject[ent[0]] = ent[1];
@@ -29,11 +27,10 @@ $('#myForm').on('submit', (e)=> {
 	formObject['r'] = r;
 
 	chrome.storage.sync.set({'poorijaankari1': JSON.stringify(formObject)}, function() {
-		// Notify that we saved.
 		console.log('Settings saved');
-		chrome.storage.sync.get('poorijaankari1', function(e) {
-			console.log(e);
-		});
+		// chrome.storage.sync.get('poorijaankari1', function(e) {
+		// 	console.log(e);
+		// });
 	});
 
 	console.log('formdata: ', JSON.stringify(formObject));
