@@ -17,13 +17,6 @@ function waitForElementToDisplay(time) {
 
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
-  // Login Details
-  if ($('input[name="j_username"]')[0]) {
-    $('input[name="j_username"]').val(myData['userName']);
-    $('input[name="j_password"]').val(myData['irctcPassword']);
-    $('input.loginCaptcha').focus();
-    $('input[name="nlpAnswer"]').focus();
-  }
 
   // Payment Preferences
   if($('#DEBIT_CARD')[0] && myData['paymentBank']) {
@@ -74,9 +67,19 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
     $('input[name="jpform:toStation"]').val(myData['jpform_toStation']);
     $('input[name="jpform:journeyDateInputDate"]').val(myData['jpform:journeyDateInputDate']);
     $('input[name="jpform:jpsubmit"]').click();
-  } else {
-    console.log('done');
   }
+  
+  // Login Details 
+  else if ($('input[name="j_username"]')[0]) {
+    $('input[name="j_username"]').val(myData['userName']);
+    $('input[name="j_password"]').val(myData['irctcPassword']);
+    $('input.loginCaptcha').focus();
+    $('input[name="nlpAnswer"]').focus();
+  }
+
+  else {
+    console.log('done');
+  } 
 });
 
 // javascript: document.getElementsByClassName("input-style1 psgn-name")[0].setAttribute("value","Jeevan"); document.getElementById("addPassengerForm:psdetail:0:psgnAge").setAttribute("value","19"); document.getElementById("addPassengerForm:psdetail:0:psgnGender").options[1].selected = true; document.getElementById("addPassengerForm:psdetail:0:berthChoice").options[1].selected = true; document.getElementById("addPassengerForm:autoUpgrade").click(); document.getElementById("addPassengerForm:mobileNo").setAttribute("value","9968967608"); document.getElementsByClassName("text captcha-answer")[0].focus();
