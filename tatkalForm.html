@@ -254,12 +254,30 @@
 				</div>
 				<div class="row">
 					<div class="col-xs-2">
-						<label for="cvv">CVV</label>
-						<input type="password" class="form-control" id="cvv" name="cvv" placeholder="CVV">
-					</div>
-					<div class="col-xs-2">
 							<label for="pin">Enter pin</label>
 							<input type="password" class="form-control" id="pin" name="pin" placeholder="Enter pin">
+					</div>
+					<div class="col-xs-2 form-group">
+						<label for="expMonth">Exp. Month</label>
+						<select id="expMonth" name="expMonth" class="form-control dropdown">
+							<option>MM</option>
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5">05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+					</div>
+					<div class="col-xs-2">
+						<label for="expYear">Expiration Year</label>
+						<input type="text" id="expYear" name="expYear" class="form-control" placeholder="Year">
 					</div>
 				</div>
 			  <div class="row col-xs-6">

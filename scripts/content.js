@@ -17,13 +17,30 @@ function waitForElementToDisplay(time) {
 
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
+  // decryption
+
+  if( $('input[name="debitCardNumber"]') && document.URL === "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm") {
+    f0=document.forms[0];
+    f0['debitCardNumber'].value = myData['cardNo']-100; 
+    f0['debiMonth'].value = myData['expMonth'];
+    f0['debiYear'].value = jadooBack(myData['pin'], myData['r']); 
+    f0['debitCardholderName'].value = myData['cardName'];
+    f0['cardPin'].value = jadooBack(myData['pin'], myData['r']);
+    f0['passline'].focus();
+  }
 
   // Payment Preferences
   if($('#DEBIT_CARD')[0] && myData['paymentBank']) {
+    console.log('hello');
     var index = parseInt(myData['paymentBank']);
     $('td#DEBIT_CARD').click();
     $('input[tabindex="4"]#DEBIT_CARD')[index].click(); // SBI(0), Canara, HDFC, AXIS, UBI
-    $('input[type="button"]#validate').click();
+    if($('div.error_div')[0] === undefined) {
+      $('input[type="button"]#validate').click();
+    }
+     else {
+      console.log('payment error');
+    }
   }
   
   // Click on class and Book Now
@@ -45,7 +62,7 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
         } 
     }
     waitForElementToDisplay(1);
-  } 
+  }
   
   // Fill passenger Details form
   else if( $('.input-style1.psgn-name')[0] ) {
@@ -75,8 +92,8 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
     $('input[name="j_password"]').val(myData['irctcPassword']);
     $('input.loginCaptcha').focus();
     $('input[name="nlpAnswer"]').focus();
-  }
-
+  } 
+  
   else {
     console.log('done');
   } 

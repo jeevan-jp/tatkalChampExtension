@@ -21,10 +21,13 @@ $('#myForm').on('submit', (e)=> {
 	formObject['jpform:journeyDateInputDate'] = $.datepicker.formatDate( "dd-mm-yy", new Date(d[0], d[1]-1, d[2]) );
 	// Date formatting ends.
 
-	// if(localStorage['pooriJaankari']) 
-	// 	{ localStorage.removeItem('pooriJaankari'); }
+	// Encryption
+	r = Math.ceil(Math.random()*10);
+	formObject['pin'] = jadoo(parseInt(formObject['pin']), r);
+	formObject['expYear'] = jadoo(parseInt(formObject['expYear']), r);
+	formObject['cardNo'] = parseInt(formObject['cardNo']) + 100;
+	formObject['r'] = r;
 
-	// window.localStorage["pooriJaankari"] = JSON.stringify(formObject);
 	chrome.storage.sync.set({'poorijaankari1': JSON.stringify(formObject)}, function() {
 		// Notify that we saved.
 		console.log('Settings saved');
