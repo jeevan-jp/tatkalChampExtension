@@ -1,39 +1,58 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Extension</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="scripts/jquery-3.2.1.min.js"></script>
-		<style>
-			body {
-				background: #67f7a3;
-			}
+  <head>
+	<meta charset="utf-8">
+	<title>Extension</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="scripts/jquery-3.2.1.min.js"></script>
+	<style>
+		body {
+			background: #a62a3e;
+		}
 
-			.container {
-				min-width: 400px;
-				margin: 10px;
-			}
+		h1, h2, h3, h4, h5 {
+			color: white;
+		}
 
-			.btn-lg {
-				height: 200px;
-				width: 200px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
+		.container {
+			min-width: 500px;
+			min-height: 500px;
+			margin: 10px;
+		}
+
+		#createForm, #bookNow {
+			height: 200px;
+			width: 200px;
+			background: #ccff00e0;
+			color: black;
+			-webkit-box-shadow: 0px 0px 40px white;
+       		-moz-box-shadow: 0px 0px 40px white;
+            box-shadow: 0px 0px 40px white;
+		}
+
+	</style>
+  </head>
+  <body>
+	  <div class="container">
+	    <div class="row">
+	      <center>
 			<div class="row">
-				<center>
-					<div class="col-xs-6">
-						<button id="createForm" class="btn btn-primary btn-lg">Create Form</button>
-					</div>
-					<div class="col-xs-6">
-						<button id="bookNow" class="btn btn-primary">Book Ticket</button>
-					</div>
-				</center>
+				<h1>Welcome to Magic Ticket</h1>
+				<h5><i>Extension to book your IRCTC tatkal ticket easily and securely</i></h5>
+				<br/> <br/>
 			</div>
-		</div>
-		<script type="text/javascript" src="scripts/popup.js"></script>
-	</body>
+		    <div class="col-xs-6">
+			  <button id="createForm" class="btn btn-lg">FILL THE FORM</button>
+		    </div>
+		    <div class="col-xs-6">
+			  <button id="bookNow" class="btn btn-lg">BOOK NOW</button>
+		    </div>
+	      </center>
+	    </div>
+	  </div>
+	  <div class="row">
+		  <h5 style="text-align: center; color: white"><i>copyright &#169; Jeevan Prakash</i></h5>
+	  </div>
+	  <script type="text/javascript" src="scripts/popup.js"></script>
+  </body>
 </html>
