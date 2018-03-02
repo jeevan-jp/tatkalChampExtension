@@ -3,7 +3,7 @@
   <head>
 	<meta charset="utf-8">
 	<title>Extension</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="styles/bootstrap.min.css">
 	<script src="scripts/jquery-3.2.1.min.js"></script>
 	<style>
 		body {
@@ -16,8 +16,14 @@
 
 		.container {
 			min-width: 500px;
-			min-height: 500px;
+			min-height: 550px;
 			margin: 10px;
+		}
+
+		.glowing {
+			-webkit-box-shadow: 0px 0px 40px white;
+       		-moz-box-shadow: 0px 0px 40px white;
+            box-shadow: 0px 0px 40px white;
 		}
 
 		#createForm, #bookNow {
@@ -25,9 +31,24 @@
 			width: 200px;
 			background: #ccff00e0;
 			color: black;
-			-webkit-box-shadow: 0px 0px 40px white;
-       		-moz-box-shadow: 0px 0px 40px white;
-            box-shadow: 0px 0px 40px white;
+		}
+
+		div#preview {
+			margin-top: 30px;
+			margin-left: 5%;
+			width: 90%;
+			height: 200px;
+			background: white;
+		}
+
+		.previewPane {
+			height: 20%;
+			border-width: 10px;
+			font-weight: bold;
+		}
+
+		#preview {
+			border-radius: 10px;
 		}
 
 	</style>
@@ -39,14 +60,29 @@
 			<div class="row">
 				<h1>Welcome to Magic Ticket</h1>
 				<h5><i>Extension to book your IRCTC tatkal ticket easily and securely</i></h5>
-				<br/> <br/>
+				<br/>
 			</div>
 		    <div class="col-xs-6">
-			  <button id="createForm" class="btn btn-lg">FILL THE FORM</button>
+			  <button id="createForm" class="btn btn-lg glowing">FILL THE FORM</button>
 		    </div>
 		    <div class="col-xs-6">
-			  <button id="bookNow" class="btn btn-lg">BOOK NOW</button>
-		    </div>
+			  <button id="bookNow" class="btn btn-lg glowing">BOOK NOW</button>
+			</div>
+			<div class="col-xs-12 glowing" id="preview" style="display: none;">
+				<h4 style="color: black; margin-top: 15px; font-weight: bold;">PREVIEW OF SAVED DETAILS</h4><hr/>
+				<div class="row previewPane">
+					<div class="col-xs-6" id="fromStation"></div>
+					<div class="col-xs-6" id="toStation"></div>
+				</div>
+				<div class="row previewPane">
+					<div class="col-xs-6" id="date"></div>
+					<div class="col-xs-6" id="train"></div>
+				</div>
+				<div class="row previewPane">
+					<div class="col-xs-6" id="class"></div>
+					<div class="col-xs-6" id="count"></div>
+				</div>
+			</div>
 	      </center>
 	    </div>
 	  </div>
