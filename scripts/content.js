@@ -8,23 +8,21 @@ function waitForElementToDisplay(time) {
       return;
   }
   else {
-      setTimeout(function() {
-          waitForElementToDisplay(time);
-      }, time);
+      setTimeout(function() { waitForElementToDisplay(time); }, time);
   }
 }
 
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
 
-  if( $('input[name="debitCardNumber"]') && document.URL === "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm") {
-    f0=document.forms[0];
-    f0['debitCardNumber'].value = myData['cardNo']-100; 
-    f0['debiMonth'].value = myData['expMonth'];
-    f0['debiYear'].value = jadooBack(myData['pin'], myData['r']); 
-    f0['debitCardholderName'].value = myData['cardName'];
-    f0['cardPin'].value = jadooBack(myData['pin'], myData['r']);
-    f0['passline'].focus();
+  if( $('input[name="debitCardNumber"]')) {
+    form0=document.forms[0];
+    form0['debitCardNumber'].value = myData['cardNo']-100; 
+    form0['debiMonth'].value = myData['expMonth'];
+    form0['debiYear'].value = jadooBack(myData['pin'], myData['r']); 
+    form0['debitCardholderName'].value = myData['cardName'];
+    form0['cardPin'].value = jadooBack(myData['pin'], myData['r']);
+    form0['passline'].focus();
   }
 
   // Payment Preferences

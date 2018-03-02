@@ -33,5 +33,5 @@ $('#myForm').on('submit', (e)=> {
 		// });
 	});
 
-	console.log('formdata: ', JSON.stringify(formObject));
+	// console.log('formdata: ', JSON.stringify(formObject));
 });
