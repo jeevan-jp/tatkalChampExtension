@@ -15,7 +15,7 @@ function waitForElementToDisplay(time) {
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
 
-  if( $('input[name="debitCardNumber"]')) {
+  if( $('input[name="debitCardNumber"]') && document.URL === "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm") {
     form0=document.forms[0];
     form0['debitCardNumber'].value = myData['cardNo']-100; 
     form0['debiMonth'].value = myData['expMonth'];
@@ -85,7 +85,7 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
   else if ($('input[name="j_username"]')[0]) {
     $('input[name="j_username"]').val(myData['userName']);
     $('input[name="j_password"]').val(myData['irctcPassword']);
-    $('input.loginCaptcha').focus();
+    $('input[name="j_captcha"]').focus();
     $('input[name="nlpAnswer"]').focus();
   } 
   
