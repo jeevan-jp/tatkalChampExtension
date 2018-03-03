@@ -14,11 +14,17 @@
   ],
   "browser_action": {
   	"default_title" : "Tatkal extension! Click Here!!",
-    "default_icon": "icon.png",
+    "default_icon": "assets/icon48x48.png",
     "default_popup": "popup.html"
    },
-
-   "permissions": [
+   "icons" : {
+    "22": "assets/icon22x22.png",
+    "24": "assets/icon24x24.png",
+    "32": "assets/icon32x32.png",
+    "48": "assets/icon48x48.png",
+    "128": "assets/icon128x128.png"
+   },
+   "permissions" : [
        "activeTab",
        "storage"
     ]
