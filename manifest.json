@@ -1,21 +1,27 @@
 {
   "manifest_version": 2,
-  "name": "IRCTC Extention",
-  "version": "0.1",
-  "description": "Made by JEEVAN",
+  "name": "_IRCTC_Extention",
+  "short_name": "tatkalChamp",
+  "version": "1.1.0",
+  "description": "_Book_Ticket",
   "author": "Jeevan",
-
   "content_scripts": [
     {
-      "matches": [ "https://www.irctc.co.in/*", "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm" ],
-      "js": ["scripts/jquery-3.2.1.min.js", "scripts/content.js"],
+      "matches": [ 
+        "https://www.irctc.co.in/*",
+        "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm"
+      ],
+      "js": [
+        "scripts/jquery-3.2.1.min.js",
+        "scripts/content.js"
+      ],
       "run_at": "document_end"
     }
   ],
   "browser_action": {
-  	"default_title" : "Tatkal extension! Click Here!!",
+  	"default_title" : "Tatkal Champ!",
     "default_icon": "assets/icon48x48.png",
-    "default_popup": "popup.html"
+    "default_popup": "views/popup.html"
    },
    "icons" : {
     "22": "assets/icon22x22.png",
@@ -25,6 +31,7 @@
     "128": "assets/icon128x128.png"
    },
    "permissions" : [
+       "https://www.irctc.co.in/",
        "activeTab",
        "storage"
     ]
