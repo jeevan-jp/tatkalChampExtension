@@ -26,14 +26,13 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
   }
 
   // Payment Preferences
-  if($('#DEBIT_CARD')[0] && myData['paymentBank'] ) {
+  else if($('#DEBIT_CARD')[0] && myData['paymentBank'] > -1 ) {
     var index = parseInt(myData['paymentBank']);
     $('td#DEBIT_CARD').click();
     $('input[tabindex="4"]#DEBIT_CARD')[index].click(); // SBI(0), Canara, HDFC, AXIS, UBI
-    if($('div.error_div')[0] === undefined && myData['paymentBank']) {
+    if(!$('div.error_div')[0]) {
       $('input[type="button"]#validate').click();
-    }
-     else {
+    } else {
       console.log('payment error');
     }
   }

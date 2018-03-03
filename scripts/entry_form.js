@@ -28,9 +28,9 @@ $('#myForm').on('submit', (e)=> {
 
 	chrome.storage.sync.set({'poorijaankari1': JSON.stringify(formObject)}, function() {
 		console.log('Settings saved');
-		// chrome.storage.sync.get('poorijaankari1', function(e) {
-		// 	console.log(e);
-		// });
+		chrome.storage.sync.get('poorijaankari1', function(e) {
+			console.log(e);
+		});
 	});
 
 	// console.log('formdata: ', JSON.stringify(formObject));
