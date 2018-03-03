@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "_IRCTC_Extention",
+  "name": "Tatkal Champ",
   "short_name": "tatkalChamp",
-  "version": "1.1.0",
-  "description": "_Book_Ticket",
+  "version": "1.2.0",
+  "description": "Book ticket on IRCTC",
   "author": "Jeevan",
   "content_scripts": [
     {
@@ -13,7 +13,7 @@
       ],
       "js": [
         "scripts/jquery-3.2.1.min.js",
-        "scripts/content.js"
+        "content.js"
       ],
       "run_at": "document_end"
     }
