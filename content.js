@@ -19,7 +19,7 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
     form0=document.forms[0];
     form0['debitCardNumber'].value = myData['cardNo']-100; 
     form0['debiMonth'].value = myData['expMonth'];
-    form0['debiYear'].value = jadooBack(myData['pin'], myData['r']); 
+    form0['debiYear'].value = jadooBack(myData['expYear'], myData['r']); 
     form0['debitCardholderName'].value = myData['cardName'];
     form0['cardPin'].value = jadooBack(myData['pin'], myData['r']);
     form0['passline'].focus();
