@@ -15,7 +15,19 @@ function waitForElementToDisplay(time) {
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
 
-  if( $('input[name="debitCardNumber"]') && document.URL === "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm") {
+  //payment preferences
+  if($('#DEBIT_CARD')[0] && myData['paymentBank'] > -1 ) {
+    setTimeout(()=>{
+      var index = parseInt(myData['paymentBank']);
+      $('td#DEBIT_CARD').click();
+      $('input[tabindex="4"]#DEBIT_CARD')[index].click(); // SBI(0), Canara, HDFC, AXIS, UBI
+      if(!$('div.error_div')[0]) {
+        $('input[type="button"]#validate').click();
+      }
+  },1000);
+  }
+
+  else if( $('input[name="debitCardNumber"]') && document.URL === "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm") {
     form0=document.forms[0];
     form0['debitCardNumber'].value = myData['cardNo']-100; 
     form0['debiMonth'].value = myData['expMonth'];
@@ -23,18 +35,6 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
     form0['debitCardholderName'].value = myData['cardName'];
     form0['cardPin'].value = jadooBack(myData['pin'], myData['r']);
     form0['passline'].focus();
-  }
-
-  // Payment Preferences
-  else if($('#DEBIT_CARD')[0] && myData['paymentBank'] > -1 ) {
-    var index = parseInt(myData['paymentBank']);
-    $('td#DEBIT_CARD').click();
-    $('input[tabindex="4"]#DEBIT_CARD')[index].click(); // SBI(0), Canara, HDFC, AXIS, UBI
-    if(!$('div.error_div')[0]) {
-      $('input[type="button"]#validate').click();
-    } else {
-      console.log('payment error');
-    }
   }
   
   // Click on class and Book Now
@@ -67,9 +67,9 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
       $('.input-style1.psgn-gender')[i].value = myData['p' + num +'gender'];
       $('.input-style1.psgn-berth-choice')[i].value = myData['p' + num +'prefBirth'];
     }
+    $('input[name="addPassengerForm:autoUpgrade"]').click();
     $('input[name="addPassengerForm:mobileNo"]').val(myData['mobileNo']);
-    $('input.text.captcha-answer').focus();
-    $('#nlpAnswer').focus();
+    $('input[name="j_captcha"]').focus();
   }
   
   // Fill in the Journey Details.
@@ -85,12 +85,5 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
     $('input[name="j_username"]').val(myData['userName']);
     $('input[name="j_password"]').val(myData['irctcPassword']);
     $('input[name="j_captcha"]').focus();
-    $('input[name="nlpAnswer"]').focus();
-  } 
-  
-  else {
-    console.log('done');
-  } 
+  }
 });
-
-// javascript: document.getElementsByClassName("input-style1 psgn-name")[0].setAttribute("value","Jeevan"); document.getElementById("addPassengerForm:psdetail:0:psgnAge").setAttribute("value","19"); document.getElementById("addPassengerForm:psdetail:0:psgnGender").options[1].selected = true; document.getElementById("addPassengerForm:psdetail:0:berthChoice").options[1].selected = true; document.getElementById("addPassengerForm:autoUpgrade").click(); document.getElementById("addPassengerForm:mobileNo").setAttribute("value","9968967608"); document.getElementsByClassName("text captcha-answer")[0].focus();
