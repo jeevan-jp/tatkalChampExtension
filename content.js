@@ -67,7 +67,8 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
       $('.input-style1.psgn-gender')[i].value = myData['p' + num +'gender'];
       $('.input-style1.psgn-berth-choice')[i].value = myData['p' + num +'prefBirth'];
     }
-    $('input[name="addPassengerForm:autoUpgrade"]').click();
+    if(myData['autoUp'] == 'on')
+      $('input[name="addPassengerForm:autoUpgrade"]')[0].checked = true;    
     $('input[name="addPassengerForm:mobileNo"]').val(myData['mobileNo']);
     $('input[name="j_captcha"]').focus();
   }
