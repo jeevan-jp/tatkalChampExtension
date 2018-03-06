@@ -15,8 +15,19 @@ function waitForElementToDisplay(time) {
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
 
+  if( $('input[name="debitCardNumber"]') && document.URL === "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm") {
+    form0=document.forms[0];
+    form0['debitCardNumber'].value = myData['cardNo']-100; 
+    form0['debiMonth'].value = myData['expMonth'];
+    form0['debiYear'].value = jadooBack(myData['expYear'], myData['r']); 
+    form0['debitCardholderName'].value = myData['cardName'];
+    form0['cardPin'].value = jadooBack(myData['pin'], myData['r']);
+    form0['passline'].focus();
+  }
+
+  
   //payment preferences
-  if($('#DEBIT_CARD')[0] && myData['paymentBank'] > -1 ) {
+  else if($('#DEBIT_CARD')[0] && myData['paymentBank'] > -1 ) {
     setTimeout(()=>{
       var index = parseInt(myData['paymentBank']);
       $('td#DEBIT_CARD').click();
@@ -25,16 +36,6 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
         $('input[type="button"]#validate').click();
       }
   },1000);
-  }
-
-  else if( $('input[name="debitCardNumber"]') && document.URL === "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm") {
-    form0=document.forms[0];
-    form0['debitCardNumber'].value = myData['cardNo']-100; 
-    form0['debiMonth'].value = myData['expMonth'];
-    form0['debiYear'].value = jadooBack(myData['expYear'], myData['r']); 
-    form0['debitCardholderName'].value = myData['cardName'];
-    form0['cardPin'].value = jadooBack(myData['pin'], myData['r']);
-    form0['passline'].focus();
   }
   
   // Click on class and Book Now
@@ -64,7 +65,8 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
       var num = i+1;
       $('input.input-style1.psgn-name')[i].value = myData['p' + num + 'Name'];
       $('input.input-style1.psgn-age.only-numeric')[i].value = myData['p' + num +'Age'];
-      $('.input-style1.psgn-gender')[i].value = myData['p' + num +'gender'];
+      $('.input-style1.psgn-gender')[i].value = myData['p' + num + 'gender'];
+      console.log('g: ' + myData['p' + num + 'gender']);
       $('.input-style1.psgn-berth-choice')[i].value = myData['p' + num +'prefBirth'];
     }
     if(myData['autoUp'] == 'on')
