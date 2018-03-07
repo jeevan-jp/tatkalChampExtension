@@ -1,7 +1,7 @@
 var anchorTagOfLink;
 var bookNowLink;
 
-// Waits until Book Now loads
+// WAITS UNTIL BOOK NOW APPEARS
 function waitForElementToDisplay(time) {
   if($('td a#' + bookNowLink)[0]) {
       document.getElementById(bookNowLink).click();
@@ -15,6 +15,7 @@ function waitForElementToDisplay(time) {
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
 
+  // PAYMENT
   if( $('input[name="debitCardNumber"]') && document.URL === "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm") {
     form0=document.forms[0];
     form0['debitCardNumber'].value = myData['cardNo']-100; 
@@ -26,7 +27,7 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
   }
 
   
-  //payment preferences
+  // PAYMENT PREFERENCES
   else if($('#DEBIT_CARD')[0] && myData['paymentBank'] > -1 ) {
     setTimeout(()=>{
       var index = parseInt(myData['paymentBank']);
@@ -38,7 +39,22 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
   },1000);
   }
   
-  // Click on class and Book Now
+  // PASSENGER DETAILS FILLING
+  else if( $('.input-style1.psgn-name')[0] ) {
+    for(var i=0; i<4; i++) {
+      var num = i+1;
+      $('input.input-style1.psgn-name')[i].value = myData['p' + num + 'Name'];
+      $('input.input-style1.psgn-age.only-numeric')[i].value = myData['p' + num +'Age'];
+      document.getElementById("addPassengerForm:psdetail:"+ i +":psgnGender").options[myData['p'+num+'gender']].selected = true;
+      $('.input-style1.psgn-berth-choice')[i].value = myData['p' + num +'prefBirth'];
+    }
+    if(myData['autoUp'] == 'on')
+      $('input[name="addPassengerForm:autoUpgrade"]')[0].checked = true;    
+    $('input[name="addPassengerForm:mobileNo"]').val(myData['mobileNo']);
+    $('input[name="j_captcha"]').focus();
+  }
+  
+  // CLICKS ON CLASS AND BOOK NOW
   else if($('input[value="TQ"]')[0]) {
     $('input[value="'+ myData['selectedQuota'] +'"]').click();
     var trainNum = new RegExp(myData['trainNo'].split(' ')[0] + '-' + myData['selectedClass']);
@@ -59,23 +75,7 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
     waitForElementToDisplay(1);
   }
   
-  // Fill passenger Details form
-  else if( $('.input-style1.psgn-name')[0] ) {
-    for(var i=0; i<4; i++) {
-      var num = i+1;
-      $('input.input-style1.psgn-name')[i].value = myData['p' + num + 'Name'];
-      $('input.input-style1.psgn-age.only-numeric')[i].value = myData['p' + num +'Age'];
-      $('.input-style1.psgn-gender')[i].value = myData['p' + num + 'gender'];
-      console.log('g: ' + myData['p' + num + 'gender']);
-      $('.input-style1.psgn-berth-choice')[i].value = myData['p' + num +'prefBirth'];
-    }
-    if(myData['autoUp'] == 'on')
-      $('input[name="addPassengerForm:autoUpgrade"]')[0].checked = true;    
-    $('input[name="addPassengerForm:mobileNo"]').val(myData['mobileNo']);
-    $('input[name="j_captcha"]').focus();
-  }
-  
-  // Fill in the Journey Details.
+  // FILLS JOURNEY DETAILS
   else if ($("input[name='jpform:fromStation']")[0] && document.URL == 'https://www.irctc.co.in/eticketing/home') {
     $('input[name="jpform:fromStation"]').val(myData['jpform_fromStation']);
     $('input[name="jpform:toStation"]').val(myData['jpform_toStation']);
@@ -83,7 +83,7 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
     $('input[name="jpform:jpsubmit"]').click();
   }
   
-  // Login Details 
+  // LOGIN
   else if ($('input[name="j_username"]')[0]) {
     $('input[name="j_username"]').val(myData['userName']);
     $('input[name="j_password"]').val(myData['irctcPassword']);
