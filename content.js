@@ -14,7 +14,9 @@ function waitForElementToDisplay(time) {
 
 var linkList = {
   "0": "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm",
-  "1": "https://securepayments.fssnet.co.in/pgwayc/paymentpage.htm#d"
+  "1": "https://securepayments.fssnet.co.in/pgwayc/paymentpage.htm#d",
+  "2": "https://securepayments.fssnet.co.in/pgwayf/paymentpage.htm#d",
+  "4": "https://securepayments.fssnet.co.in/ipay/paymentpage.htm#d"
 };
 
 chrome.storage.sync.get('poorijaankari1', (data) => {
@@ -30,6 +32,27 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
     form0['cardPin'].value = jadooBack(myData['pin'], myData['r']);
     form0['passline'].focus();
   }
+
+  // UBI payment- Not working
+  // else if($('input[name="txtboxCardNum"]') && document.URL === "https://irctc.unitedbankofindia.com/IRCTC_WebApp/Payment.aspx") {
+  //   form0=document.forms[0];
+  //   form0['txtboxCardNum'].value = myData['cardNo']-100;
+  //   form0['dropdownMonth'].value = myData['expMonth'];
+  //   form0['dropdownYear'].value = jadooBack(myData['expYear'], myData['r']);
+  //   form0['txtOTP'].focus();
+  // }
+
+  // not working HDFC
+  // else if($('input[name="Ecom_Payment_Card_Number"]') && document.URL === "https://securepg.fssnet.co.in/pgwaya/gateway/payment/payment.jsp") {
+  // console.log('y');  
+  // form0=document.forms[0];
+  //   form0['Ecom_Payment_Card_Number'].value = myData['cardNo']-100; 
+  //   form0['Ecom_Payment_Card_ExpDate_Month'].value = myData['expMonth'];
+  //   form0['Ecom_Payment_Card_ExpDate_Year'].value = jadooBack(myData['expYear'], myData['r']); 
+  //   form0['Ecom_Payment_Card_Name'].value = myData['cardName'];
+  //   form0['Ecom_Payment_Pin'].value = jadooBack(myData['pin'], myData['r']);
+  //   form0['Ecom_Captcha_Value'].focus();
+  // }
 
   
   // PAYMENT PREFERENCES
