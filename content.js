@@ -12,11 +12,16 @@ function waitForElementToDisplay(time) {
   }
 }
 
+var linkList = {
+  "0": "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm",
+  "1": "https://securepayments.fssnet.co.in/pgwayc/paymentpage.htm#d"
+};
+
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
 
-  // PAYMENT
-  if( $('input[name="debitCardNumber"]') && document.URL === "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm") {
+  // PAYMENT SBI
+  if( $('input[name="debitCardNumber"]') && document.URL === linkList[myData['paymentBank']]) {
     form0=document.forms[0];
     form0['debitCardNumber'].value = myData['cardNo']-100; 
     form0['debiMonth'].value = myData['expMonth'];
@@ -45,7 +50,8 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
       var num = i+1;
       $('input.input-style1.psgn-name')[i].value = myData['p' + num + 'Name'];
       $('input.input-style1.psgn-age.only-numeric')[i].value = myData['p' + num +'Age'];
-      document.getElementById("addPassengerForm:psdetail:"+ i +":psgnGender").options[myData['p'+num+'gender']].selected = true;
+      // document.getElementById("addPassengerForm:psdetail:"+ i +":psgnGender").options[myData['p'+num+'gender']].selected = true;
+      $('.psgn-gender:eq(' + i + ')').val(myData['p'+num+'gender']);
       $('.input-style1.psgn-berth-choice')[i].value = myData['p' + num +'prefBirth'];
     }
     if(myData['autoUp'] == 'on')
