@@ -22,7 +22,7 @@ var linkList = {
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
 
-  // PAYMENT SBI
+  // PAYMENT SBI, canara, IOB, Axis
   if( $('input[name="debitCardNumber"]') && document.URL === linkList[myData['paymentBank']]) {
     form0=document.forms[0];
     form0['debitCardNumber'].value = myData['cardNo']-100; 
@@ -71,11 +71,12 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
   else if( $('.input-style1.psgn-name')[0] ) {
     for(var i=0; i<4; i++) {
       var num = i+1;
-      $('input.input-style1.psgn-name')[i].value = myData['p' + num + 'Name'];
-      $('input.input-style1.psgn-age.only-numeric')[i].value = myData['p' + num +'Age'];
-      // document.getElementById("addPassengerForm:psdetail:"+ i +":psgnGender").options[myData['p'+num+'gender']].selected = true;
-      $('.psgn-gender:eq(' + i + ')').val(myData['p'+num+'gender']);
-      $('.input-style1.psgn-berth-choice')[i].value = myData['p' + num +'prefBirth'];
+      if(myData['p' + num + 'Name']) {
+        $('input.input-style1.psgn-name')[i].value = myData['p' + num + 'Name'];
+        $('input.input-style1.psgn-age.only-numeric')[i].value = myData['p' + num +'Age'];
+        $('td.rf-dt-c select')[5*i + 1].value = myData['p' + num +'prefBirth'];
+        $('td.rf-dt-c select')[5*i].value = myData['p' + num + 'gender'];
+      }
     }
     if(myData['autoUp'] == 'on')
       $('input[name="addPassengerForm:autoUpgrade"]')[0].checked = true;    

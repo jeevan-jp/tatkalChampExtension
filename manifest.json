@@ -31,7 +31,7 @@
     "128": "assets/icon128x128.png"
    },
    "permissions" : [
-       "https://www.irctc.co.in/",
+       "https://www.irctc.co.in/*",
        "activeTab",
        "storage"
     ]
