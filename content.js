@@ -117,6 +117,8 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
   else if ($('input[name="j_username"]')[0]) {
     $('input[name="j_username"]').val(myData['userName']);
     $('input[name="j_password"]').val(myData['irctcPassword']);
+    $('input.loginCaptcha').css({"height":"50","widht":"150","font-size":"30px"})
+    $('img#cimage').css({"height":"70","width":"190"});
     $('input[name="j_captcha"]').focus();
   }
 });
