@@ -1,16 +1,9 @@
 var anchorTagOfLink;
 var bookNowLink;
-
-// WAITS UNTIL BOOK NOW APPEARS
-function waitForElementToDisplay(time) {
-  if($('td a#' + bookNowLink)[0]) {
-      document.getElementById(bookNowLink).click();
-      return;
-  }
-  else {
-      setTimeout(function() { waitForElementToDisplay(time); }, time);
-  }
-}
+var date = new Date();
+var h = date.getHours();
+// var m = date.getMinutes();
+var tatkalTime = false;
 
 var linkList = {
   "0": "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm",
@@ -18,12 +11,24 @@ var linkList = {
   "2": "https://securepayments.fssnet.co.in/pgwayf/paymentpage.htm#d",
   "4": "https://securepayments.fssnet.co.in/ipay/paymentpage.htm#d"
 };
+if( h < 12 && h >= 9 ) {
+  tatkalTime = true;
+}
+// WAITS UNTIL BOOK NOW APPEARS
+function waitForElementToDisplay(time) {
+  if($('td a#' + bookNowLink)[0]) {
+      document.getElementById(bookNowLink).click();
+      return;
+  } else {
+      setTimeout(function() { waitForElementToDisplay(time); }, time);
+  }
+}
 
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
 
   // PAYMENT SBI, canara, IOB, Axis
-  if( $('input[name="debitCardNumber"]') && document.URL === linkList[myData['paymentBank']]) {
+  if(document.URL === linkList[myData['paymentBank']] && $('input[name="debitCardNumber"]')) {
     form0=document.forms[0];
     form0['debitCardNumber'].value = myData['cardNo']-100; 
     form0['debiMonth'].value = myData['expMonth'];
@@ -70,7 +75,7 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
   // PASSENGER DETAILS FILLING
   else if( $('.input-style1.psgn-name')[0] ) {
     var theVariable;
-    myData['selectedQuota'] == "TQ" ? theVariable = 5 : theVariable = 4;
+    tatkalTime ? theVariable = 5 : theVariable = 4;
     for(var i=0; i<4; i++) {
       var num = i+1;
       if(myData['p' + num + 'Name']) {
@@ -78,8 +83,14 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
         $('input.input-style1.psgn-age.only-numeric')[i].value = myData['p' + num +'Age'];
         $('td.rf-dt-c select')[theVariable*i + 1].value = myData['p' + num +'prefBirth'];
         $('td.rf-dt-c select')[theVariable*i].value = myData['p' + num + 'gender'];
-        if(myData['p'+ num +'bedRoll'] == "on")
-          $('input.psgn-bedRollChoice')[i].checked = true;
+        if(myData['p'+ num +'bedRoll'] == "on") {
+          try {
+            $('input.psgn-bedRollChoice')[i].checked = true;
+          }
+          catch(err) {
+            console.log('No bed-roll option available for this ticket');
+          }
+        }
       }
     }
     if(myData['autoUp'] == 'on')
@@ -123,7 +134,6 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
     $('input[name="j_password"]').val(myData['irctcPassword']);
     $('input.loginCaptcha').css({"height":"50px","width":"250px","font-size":"30px"})
     $('img#cimage').css({"height":"80px","width":"290px"});
-    // $('div#colorSlot1').css("display","hidden");
     $('input[name="j_captcha"]').focus();
   }
 });
