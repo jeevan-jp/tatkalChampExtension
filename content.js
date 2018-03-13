@@ -64,18 +64,22 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
       if(!$('div.error_div')[0]) {
         $('input[type="button"]#validate').click();
       }
-  },1000);
+    },1000);
   }
   
   // PASSENGER DETAILS FILLING
   else if( $('.input-style1.psgn-name')[0] ) {
+    var theVariable;
+    myData['selectedQuota'] == "TQ" ? theVariable = 5 : theVariable = 4;
     for(var i=0; i<4; i++) {
       var num = i+1;
       if(myData['p' + num + 'Name']) {
         $('input.input-style1.psgn-name')[i].value = myData['p' + num + 'Name'];
         $('input.input-style1.psgn-age.only-numeric')[i].value = myData['p' + num +'Age'];
-        $('td.rf-dt-c select')[5*i + 1].value = myData['p' + num +'prefBirth'];
-        $('td.rf-dt-c select')[5*i].value = myData['p' + num + 'gender'];
+        $('td.rf-dt-c select')[theVariable*i + 1].value = myData['p' + num +'prefBirth'];
+        $('td.rf-dt-c select')[theVariable*i].value = myData['p' + num + 'gender'];
+        if(myData['p'+ num +'bedRoll'] == "on")
+          $('input.psgn-bedRollChoice')[i].checked = true;
       }
     }
     if(myData['autoUp'] == 'on')

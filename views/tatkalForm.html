@@ -81,23 +81,26 @@
 							<option value="2A">2A</option>
 							<option value="1A">1A</option>
 							<option value="CC">CC</option>
+							<option value="EC">EC</option>
+							<option value="2S">2S</option>
 				    </select>
 					</div>
 				  <div class="form-group col-xs-2">
 				    <label for="selectedQuota">Select Quota</label>
 				    <select id="selectedQuota" name="selectedQuota" class="form-control dropdown">
-						<option value="GN">General</option>
 						<option value="TQ">Tatkal</option>
-						<option value="HD">Handicapped</option>
-						<option value="WN">Women</option>
+						<option value="PT">Premium Tatkal</option>
+						<option value="SS">LOWER BERTH/Sr. CITIZEN</option>
+						<option value="GN">General</option>
+						<option value="HD">Divyangjan</option>
+						<option value="LD">Ladies</option>
 				    </select>
 				  </div>
 			  </div>
 
-
 			  <h3>Passenger Details:</h3>
 			  <div class="row">
-				  <div class="form-group col-xs-4">
+				  <div class="form-group col-xs-3">
 				    <label for="p1Name">Passenger Name</label>
 				    <input type="text" class="form-control" id="p1Name" name="p1Name" placeholder="Passenger 1 name">
 				  </div>
@@ -124,10 +127,19 @@
 				    	<option value="SL">Side Lower</option>
 				    	<option value="SU">Side Upper</option>
 				    </select>
-				  </div>
+					</div>
+					<div class="form-group col-xs-1">
+						<div class="checkbox" style="padding-top: 20px;">
+							<label>
+								<input type="checkbox" id="p1bedRoll" name="p1bedRoll">
+								<strong>bedroll</strong>
+							</label>
+						</div>
+					</div>
+					
 				</div>
 				<div class="row">
-				  <div class="form-group col-xs-4">
+				  <div class="form-group col-xs-3">
 				    <label for="p2Name">Passenger Name</label>
 				    <input type="text" class="form-control" id="p2Name" name="p2Name" placeholder="Passenger 2 name">
 				  </div>
@@ -155,9 +167,17 @@
 				    	<option value="SU">Side Upper</option>
 				    </select>
 					</div>
+					<div class="form-group col-xs-1">
+						<div class="checkbox" style="padding-top: 20px;">
+							<label>
+								<input type="checkbox" id="p2bedRoll" name="p2bedRoll">
+								<strong>bedroll</strong>
+							</label>
+						</div>
+					</div>
 				</div>
 				<div class="row">
-					<div class="form-group col-xs-4">
+					<div class="form-group col-xs-3">
 						<label for="p3Name">Passenger Name</label>
 						<input type="text" class="form-control" id="p3Name" name="p3Name" placeholder="Passenger 3 name">
 					</div>
@@ -185,9 +205,17 @@
 							<option value="SU">Side Upper</option>
 						</select>
 					</div>
+					<div class="form-group col-xs-1">
+						<div class="checkbox" style="padding-top: 20px;">
+							<label>
+								<input type="checkbox" id="p3bedRoll" name="p3bedRoll">
+								<strong>bedroll</strong>
+							</label>
+						</div>
+					</div>
 				</div>
 				<div class="row">
-					<div class="form-group col-xs-4">
+					<div class="form-group col-xs-3">
 						<label for="p4Name">Passenger Name</label>
 						<input type="text" class="form-control" id="p4Name" name="p4Name" placeholder="Passenger 4 name">
 					</div>
@@ -214,6 +242,14 @@
 							<option value="SL">Side Lower</option>
 							<option value="SU">Side Upper</option>
 						</select>
+					</div>
+					<div class="form-group col-xs-1">
+						<div class="checkbox" style="padding-top: 20px;">
+							<label>
+								<input type="checkbox" id="p4bedRoll" name="p4bedRoll">
+								<strong>bedroll</strong>
+							</label>
+						</div>
 					</div>
 				</div>
 			  <div class="row">

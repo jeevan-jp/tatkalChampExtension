@@ -2,8 +2,16 @@ $("#createForm").on('click', () => {
 	window.open("tatkalForm.html", '_blank');
 });
 
+chrome.tabs.getSelected(null, function(tab) { 
+    console.log(tab.url);
+});	// Will be used later.
+
 $("#bookNow").on('click', () => {
-	window.open("https://www.irctc.co.in/eticketing/loginHome.jsf", '_blank');
+	chrome.tabs.getSelected(null, function(tab) {
+		if(tab.url !== 'https://www.irctc.co.in/eticketing/loginHome.jsf') {
+			window.open("https://www.irctc.co.in/eticketing/loginHome.jsf", '_blank');
+		}
+	});
 });
 
 var storedData;
@@ -15,7 +23,6 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
 		if(storedData['p' + i + 'Name'])
 			count++;
 	}
-	console.log(storedData);
 	if(storedData && storedData['userName'] && storedData['mobileNo']) {
 		$('#fromStation').html(storedData['jpform_fromStation']);
 		$('#toStation').html(storedData['jpform_toStation']);
