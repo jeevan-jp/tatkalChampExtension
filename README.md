@@ -1,7 +1,12 @@
 # Tatkal Champ Chrome Extension
-#### Useful for booking IRCTC train ticket (tatkal) online.
-##### By clicking 'Fill the form' button You have to fill in the details into tatkal form before clicking on 'book now' button.
-
+ #### Useful for booking IRCTC train ticket (tatkal) online.
+ ##### Automatically Fills : 
+ - IRCTC login
+ - Your train and journey details
+ - Passenger Details
+ - Payment Details
+ 
+ ######Note : extension don't give us any type of your personal data.All Details locally stored in your system.
 ### Contributing
 
 Clone the repo using following command
