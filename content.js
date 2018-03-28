@@ -5,7 +5,7 @@ var h = date.getHours();
 var m = date.getMinutes();
 var s = date.getSeconds();
 
-var tatkalTime = false;
+var tatkalTime=false;
 
 var linkList = {
   "0": "https://securepayments.fssnet.co.in/pgwayb/paymentpage.htm",
@@ -17,9 +17,6 @@ var linkList = {
 $('body').prepend('<div id="theClock" style="position: fixed; background:black; color: yellow; z-index: 1000;"><h1></h1></div>');
 startTime();
 
-if( h < 12 && h >= 9 ) {
-  tatkalTime = true;
-}
 // WAITS UNTIL BOOK NOW APPEARS
 function waitForElementToDisplay(time) {
   if($('td a#' + bookNowLink)[0]) {
@@ -46,12 +43,16 @@ function startTime()
 function checkTime(i)
 {
   if(i<10)
-    {i = "0" + i;}
+    i = "0" + i;
   return i;
 }
 
 chrome.storage.sync.get('poorijaankari1', (data) => {
   var myData = JSON.parse(data['poorijaankari1']);
+
+  if( myData['selectedQuota'] == "TQ") {
+    tatkalTime = true;
+  }
 
   // PAYMENT SBI, canara, IOB, Axis
   if(document.URL === linkList[myData['paymentBank']] && $('input[name="debitCardNumber"]')) {
