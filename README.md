@@ -18,7 +18,7 @@ chrome://extensions
 
  * Select the path where you have cloned the repo.
 
- ### To make changes
+ ### To make :
 
  Make sure you are not making any changes to master.
 
@@ -28,4 +28,4 @@ chrome://extensions
  ```
  You will be automatically switched to the newly created branch
 
- Make you changes and create PR.
+ * Make changes and create PR.
