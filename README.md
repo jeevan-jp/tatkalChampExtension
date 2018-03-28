@@ -16,7 +16,7 @@ chrome://extensions
 
  * Click on 'Load Unpacked extension'
 
- * Select the path where you have clone it
+ * Select the path where you have cloned the repo.
 
  ### To make changes
 
@@ -26,6 +26,6 @@ chrome://extensions
  ```
  git checkout -b <your_branch_name>
  ```
- You will automatically switched to the newly created branch
+ You will be automatically switched to the newly created branch
 
  Make you changes and create PR.
