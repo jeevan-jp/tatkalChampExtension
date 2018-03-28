@@ -2,7 +2,7 @@ var anchorTagOfLink;
 var bookNowLink;
 var date = new Date();
 var h = date.getHours();
-// var m = date.getMinutes();
+
 var tatkalTime = false;
 
 var linkList = {
@@ -11,6 +11,8 @@ var linkList = {
   "2": "https://securepayments.fssnet.co.in/pgwayf/paymentpage.htm#d",
   "4": "https://securepayments.fssnet.co.in/ipay/paymentpage.htm#d"
 };
+
+
 if( h < 12 && h >= 9 ) {
   tatkalTime = true;
 }
@@ -135,5 +137,10 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
     $('input.loginCaptcha').css({"height":"50px","width":"250px","font-size":"30px"})
     $('img#cimage').css({"height":"80px","width":"290px"});
     $('input[name="j_captcha"]').focus();
+    // Code listening to 'enter key press' event
+    $("input.loginCaptcha").keypress((e) => {
+      if(e.keyCode === 13)
+        $('input#loginbutton').click();
+    });
   }
 });
