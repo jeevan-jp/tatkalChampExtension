@@ -6,7 +6,7 @@
  - Passenger Details
  - Payment Details
  
- ######Note : extension don't give us any type of your personal data.All Details locally stored in your system.
+ Note : extension don't give us any type of your personal data.All Details locally stored in your system.
 ### Contributing
 
 Clone the repo using following command
