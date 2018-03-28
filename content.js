@@ -2,6 +2,8 @@ var anchorTagOfLink;
 var bookNowLink;
 var date = new Date();
 var h = date.getHours();
+var m = date.getMinutes();
+var s = date.getSeconds();
 
 var tatkalTime = false;
 
@@ -12,6 +14,8 @@ var linkList = {
   "4": "https://securepayments.fssnet.co.in/ipay/paymentpage.htm#d"
 };
 
+$('body').prepend('<div id="theClock" style="position: fixed; background:black; color: yellow; z-index: 1000;"><h1></h1></div>');
+startTime();
 
 if( h < 12 && h >= 9 ) {
   tatkalTime = true;
@@ -24,6 +28,26 @@ function waitForElementToDisplay(time) {
   } else {
       setTimeout(function() { waitForElementToDisplay(time); }, time);
   }
+}
+
+function startTime()
+{
+    var d = new Date();
+    var h= d.getHours();
+    var m=d.getMinutes();
+    var s=d.getSeconds();
+    h=checkTime(h);
+    m=checkTime(m);
+    s=checkTime(s);
+    $('#theClock h1').html( h + ' : ' + m + ' : ' + s);    
+    setTimeout(startTime, 500);
+}
+
+function checkTime(i)
+{
+  if(i<10)
+    {i = "0" + i;}
+  return i;
 }
 
 chrome.storage.sync.get('poorijaankari1', (data) => {
