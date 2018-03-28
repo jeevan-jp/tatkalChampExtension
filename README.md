@@ -18,7 +18,7 @@ chrome://extensions
 
  * Select the path where you have cloned the repo.
 
- ### To make :
+ ### To make changes:
 
  Make sure you are not making any changes to master.
 
