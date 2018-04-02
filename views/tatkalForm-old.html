@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">	
+	<head>
+		<meta charset="utf-8">
+		<title>Extension</title>
+		<link rel="stylesheet" href="../styles/bootstrap.min.css">
+		<link rel="stylesheet" href="../styles/jquery-ui.min.css">
+		<link rel="stylesheet" href="../styles/jquery-impromptu.min.css">
+		<style>
+			body {
+				background: linear-gradient(#e0e6fb, #b1bee8);
+			}
+
+			.container {
+				width: 60%;
+				margin: 10px 20%;
+				min-width: 400px;
+			}
+
+			h3 {
+				color: red;
+			}
+
+			h1 {
+				color: purple;
+			}
+
+			#submitForm {
+				margin-top: 20px;
+			}
+		</style>
+		<script type="text/javascript" src="../scripts/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../scripts/jquery-impromptu.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12" style="text-align: center; text-shadow: 2px 2px 5px #ee3d87"><h1><strong>Details Form</strong></h1></div>
+			</div>
+
+			<form id="myForm" name="myForm" formhorizontal>
+				<h3>Login Details</h3>
+			  <div class="row">
+				  <div class="form-group col-xs-4">
+				    <label for="userName">User Name</label>
+				    <input type="text" class="form-control" id="userName" name="userName" placeholder="Irctc User Name">
+				  </div>
+				  <div class="form-group col-xs-4">
+				    <label for="irctcPassword">Password</label>
+				    <input type="password" class="form-control" id="irctcPassword" name="irctcPassword" placeholder="Password">
+				  </div>
+			  </div>
+
+				<h3>Journey Details </h3>
+			  <div class="row">
+				  <div class="form-group col-xs-4">
+				    <label for="jpform_fromStation">From Station</label>
+				    <input type="text" class="form-control ui-autocomplete-input" id="jpform_fromStation" name="jpform_fromStation" placeholder="From station">
+				  </div>
+				  <div class="form-group col-xs-4">
+				    <label for="jpform_toStation">To station</label>
+				    <input type="text" class="form-control ui-autocomplete-input" id="jpform_toStation" name="jpform_toStation" placeholder="To Station">
+				  </div>
+				  <div class="form-group col-xs-4">
+				    <label for="jpform:journeyDateInputDate">Date</label>
+				    <input type="date" class="form-control" id="datePicker" name="jpform:journeyDateInputDate">
+				  </div>
+			  </div>
+
+			  <div class="row">
+				  <div class="form-group col-xs-4">
+				  	<label for="trainNo">Train number</label>
+				  	<input type="text" class="form-control ui-autocomplete-input" name="trainNo" id="trainNo" placeholder="Train Number">
+				  </div>
+				  <div class="form-group col-xs-2">
+				    <label for="selectedClass">Select Class </label>
+				    <select id="selectedClass" name="selectedClass" class="form-control dropdown">
+							<option value="">Select</option>
+							<option value="SL">SL</option>
+							<option value="3A">3A</option>
+							<option value="2A">2A</option>
+							<option value="1A">1A</option>
+							<option value="CC">CC</option>
+							<option value="EC">EC</option>
+							<option value="2S">2S</option>
+				    </select>
+					</div>
+				  <div class="form-group col-xs-2">
+				    <label for="selectedQuota">Select Quota</label>
+				    <select id="selectedQuota" name="selectedQuota" class="form-control dropdown">
+						<option value="TQ">Tatkal</option>
+						<option value="PT">Premium Tatkal</option>
+						<option value="SS">LOWER BERTH/Sr. CITIZEN</option>
+						<option value="GN">General</option>
+						<option value="HD">Divyangjan</option>
+						<option value="LD">Ladies</option>
+				    </select>
+				  </div>
+			  </div>
+
+			  <h3>Passenger Details:</h3>
+			  <div class="row">
+				  <div class="form-group col-xs-3">
+				    <label for="p1Name">Passenger Name</label>
+				    <input type="text" class="form-control" id="p1Name" name="p1Name" placeholder="Passenger 1 name">
+				  </div>
+				  <div class="form-group col-xs-2">
+				    <label for="p1Age">Age</label>
+				    <input type="number" class="form-control" id="p1Age" name="p1Age" placeholder="Age">
+				  </div>
+				  <div class="form-group col-xs-3">
+				    <label for="p1gender">Gender</label>
+				    <select id="p1gender" name="p1gender" class="form-control dropdown">
+				    	<option value=" ">Select</option>
+				    	<option value="F">Female</option>
+				    	<option value="M">Male</option>
+				    	<option value="T">Transgender</option>
+				    </select>
+				  </div>
+				  <div class="form-group col-xs-3">
+				    <label for="p1prefBirth">Preferred Birth</label>
+				    <select id="p1prefBirth" name="p1prefBirth" class="form-control dropdown">
+				    	<option value="N">No preference</option>
+				    	<option value="LB">Lower</option>
+				    	<option value="MB">Middle</option>
+				    	<option value="UB">Upper</option>
+				    	<option value="SL">Side Lower</option>
+				    	<option value="SU">Side Upper</option>
+				    </select>
+					</div>
+					<div class="form-group col-xs-1">
+						<div class="checkbox" style="padding-top: 20px;">
+							<label>
+								<input type="checkbox" id="p1bedRoll" name="p1bedRoll">
+								<strong>bedroll</strong>
+							</label>
+						</div>
+					</div>
+					
+				</div>
+				<div class="row">
+				  <div class="form-group col-xs-3">
+				    <label for="p2Name">Passenger Name</label>
+				    <input type="text" class="form-control" id="p2Name" name="p2Name" placeholder="Passenger 2 name">
+				  </div>
+				  <div class="form-group col-xs-2">
+				    <label for="p2Age">Age</label>
+				    <input type="number" class="form-control" id="p2Age" name="p2Age" placeholder="Age">
+				  </div>
+				  <div class="form-group col-xs-3">
+				    <label for="p2gender">Gender</label>
+				    <select id="p2gender" name="p2gender" class="form-control dropdown">
+				    	<option value=" ">Select</option>
+				    	<option value="F">Female</option>
+				    	<option value="M">Male</option>
+				    	<option value="T">Transgender</option>
+				    </select>
+				  </div>
+				  <div class="form-group col-xs-3">
+				    <label for="p2prefBirth">Preferred Birth</label>
+				    <select id="p2prefBirth" name="p2prefBirth" class="form-control dropdown">
+				    	<option value="N">No preference</option>
+				    	<option value="LB">Lower</option>
+				    	<option value="MB">Middle</option>
+				    	<option value="UB">Upper</option>
+				    	<option value="SL">Side Lower</option>
+				    	<option value="SU">Side Upper</option>
+				    </select>
+					</div>
+					<div class="form-group col-xs-1">
+						<div class="checkbox" style="padding-top: 20px;">
+							<label>
+								<input type="checkbox" id="p2bedRoll" name="p2bedRoll">
+								<strong>bedroll</strong>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-3">
+						<label for="p3Name">Passenger Name</label>
+						<input type="text" class="form-control" id="p3Name" name="p3Name" placeholder="Passenger 3 name">
+					</div>
+					<div class="form-group col-xs-2">
+						<label for="p3Age">Age</label>
+						<input type="number" class="form-control" id="p3Age" name="p3Age" placeholder="Age">
+					</div>
+					<div class="form-group col-xs-3">
+						<label for="p3gender">Gender</label>
+						<select id="p3gender" name="p3gender" class="form-control dropdown">
+				    	<option value=" ">Select</option>
+				    	<option value="F">Female</option>
+				    	<option value="M">Male</option>
+				    	<option value="T">Transgender</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-3">
+						<label for="p3prefBirth">Preferred Birth</label>
+						<select id="p3prefBirth" name="p3prefBirth" class="form-control dropdown">
+							<option value="N">No preference</option>
+							<option value="LB">Lower</option>
+							<option value="MB">Middle</option>
+							<option value="UB">Upper</option>
+							<option value="SL">Side Lower</option>
+							<option value="SU">Side Upper</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-1">
+						<div class="checkbox" style="padding-top: 20px;">
+							<label>
+								<input type="checkbox" id="p3bedRoll" name="p3bedRoll">
+								<strong>bedroll</strong>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-3">
+						<label for="p4Name">Passenger Name</label>
+						<input type="text" class="form-control" id="p4Name" name="p4Name" placeholder="Passenger 4 name">
+					</div>
+					<div class="form-group col-xs-2">
+						<label for="p4Age">Age</label>
+						<input type="number" class="form-control" id="p4Age" name="p4Age" placeholder="Age">
+					</div>
+					<div class="form-group col-xs-3">
+						<label for="p4gender">Gender</label>
+						<select id="p4gender" name="p4gender" class="form-control dropdown">
+				    	<option value=" ">Select</option>
+				    	<option value="F">Female</option>
+				    	<option value="M">Male</option>
+				    	<option value="T">Transgender</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-3">
+						<label for="p4prefBirth">Preferred Birth</label>
+						<select id="p4prefBirth" name="p4prefBirth" class="form-control dropdown">
+							<option value="N">No preference</option>
+							<option value="LB">Lower</option>
+							<option value="MB">Middle</option>
+							<option value="UB">Upper</option>
+							<option value="SL">Side Lower</option>
+							<option value="SU">Side Upper</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-1">
+						<div class="checkbox" style="padding-top: 20px;">
+							<label>
+								<input type="checkbox" id="p4bedRoll" name="p4bedRoll">
+								<strong>bedroll</strong>
+							</label>
+						</div>
+					</div>
+				</div>
+			  <div class="row">
+					<div class="form-group col-xs-6">
+							<label for="mobileNo">Mobile</label>
+							<input type="number" class="form-control" id="mobileNo" name="mobileNo" placeholder="Mobile Number">
+					</div>
+					<div class="form-group col-xs-6" >
+						<div class="checkbox" style="padding-top: 20px;">
+								<label>
+									<input type="checkbox" id="autoUp" name="autoUp">
+									<strong>consider for auto-Upgradation</strong>
+								</label>
+						</div>
+					</div>
+				</div>
+
+				<h3>Payment Details</h3>
+				<div class="row">
+					<div class="form-group col-xs-4">
+						<label for="paymentMethod">Payment Method</label>
+						<select id="paymentMethod" name="paymentMethod" class="form-control dropdown">
+							<option value="debitCard">Debit Card with pin</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-4">
+						<label for="paymentBank">Select Bank</label>
+						<select id="paymentBank" name="paymentBank" class="form-control dropdown">
+							<option value="-1">Select Bank------</option>
+							<option value="0">State Bank of India</option>
+							<option value="1">Indian Overseas Bank</option>
+							<option value="2">Canara Bank</option>
+							<option value="3">HDFC Bank</option>
+							<option value="4">Axis Bank</option>
+							<option value="5">Union Bank of India</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4">
+						<label for="cardNo">Card Number</label>
+						<input type="number" class="form-control" id="cardNo" name="cardNo" placeholder="Card Number">
+					</div>
+					<div class="col-xs-4">
+							<label for="cardName">Name on Card</label>
+							<input type="text" class="form-control" id="cardName" name="cardName" placeholder="Name on card">
+					</div>					
+				</div>
+				<div class="row">
+					<div class="col-xs-2">
+							<label for="pin">Enter pin</label>
+							<input type="password" class="form-control" id="pin" name="pin" placeholder="Enter pin">
+					</div>
+					<div class="col-xs-2 form-group">
+						<label for="expMonth">Exp. Month</label>
+						<select id="expMonth" name="expMonth" class="form-control dropdown">
+							<option>MM</option>
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5">05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+					</div>
+					<div class="col-xs-2">
+						<label for="expYear">Expiration Year</label>
+						<input type="text" id="expYear" name="expYear" class="form-control" placeholder="Year">
+					</div>
+				</div>
+			  <div class="row col-xs-6">
+					<input type="submit" id="submitForm" class="btn btn-primary btn-lg" value="submit">
+			  </div>
+			</form>
+		</div>
+		<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../entry_form.js"></script>
+		<script type="text/javascript" src="../scripts/station_list.js"></script>
+		<script type="text/javascript" src="../scripts/train_list.js"></script>
+	</body>
+</html>
