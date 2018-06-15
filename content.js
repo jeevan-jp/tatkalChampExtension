@@ -169,3 +169,7 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
     });
   }
 });
+
+if(this.location.href === "https://www.irctc.co.in/nget/train-search") {
+  $('a > .ng-star-inserted').click();
+}
