@@ -173,3 +173,9 @@ chrome.storage.sync.get('poorijaankari1', (data) => {
 if(this.location.href === "https://www.irctc.co.in/nget/train-search") {
   $('a > .ng-star-inserted').click();
 }
+
+// Update for new website
+// $('input[placeholder="From*"]').value = "NEW DELHI - NDLS";
+// $('input[placeholder="To*"]').value = "SAKRI JN - SKI";
+// $('input[placeholder="Journey Date(dd-mm-yyyy)*"]').value = "16-06-2018";
+// $('button.search_btn').click();
